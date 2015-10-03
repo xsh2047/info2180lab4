@@ -11,6 +11,8 @@ window.onload = function() {
 	}
 	$("end").observe("mouseover", end);
 	$("start").observe("click", restart);
+	//$("maze").observe("mouseleave", turnRed);
+	document.getElementById("maze").onmouseleave = turnRed;
 };
 
 var turnRed = function(){
@@ -24,11 +26,9 @@ var end = function(){
 	var red = $("boundary1").className;
 	console.log(red);
 	if(red.indexOf("youlose") == -1){
-		$("status").value = "CONGRATULATIONS: You Win!";
-		alert("CONGRATULATIONS: You Win!");
+		$("status").innerHTML = "CONGRATULATIONS: You Win!";
 	}else{
-		$("status").value = "YOU LOST! TRY AGAIN";
-		alert("YOU LOST! TRY AGAIN");
+		$("status").innerHTML = "YOU LOST! TRY AGAIN";
 	}
 };
 
@@ -36,5 +36,6 @@ var restart = function(){
 	boundaries = $$("#maze div.boundary");
 	for(var i = 0; i < boundaries.length; i++){
 		boundaries[i].className = "boundary";
+		$("status").innerHTML = "Move your mouse over the \"S\" to begin.";
 	}
 };
